@@ -38,12 +38,14 @@ const [error, setError] = useState(null)
    }
 
    setProfile(form)
+   navigation.navigate('Resumo')
   }
 
   return (
     <View style={styles.container}>
       <ProfileForm initialValues={form} onChange={onChange} onSubmit={onSubmit} />
      {error && <Text style={styles.error}>{error}</Text>}
+     
     </View>
   )
 }
