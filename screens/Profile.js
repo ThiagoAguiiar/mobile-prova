@@ -39,6 +39,11 @@ const Profile = () => {
       return
     }
 
+    if (isNaN(form.accountBalance) || form.accountBalance < 0) {
+      setError('Saldo da conta inválido')
+      return
+    }
+
     setProfile(form)
     navigation.navigate('Resumo')
   }

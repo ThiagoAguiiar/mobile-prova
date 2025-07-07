@@ -34,6 +34,11 @@ const NewExpense = () => {
       return
     }
 
+    if (isNaN(form.value) || form.value <= 0) {
+      setError('Valor inválido.')
+      return
+    }
+
     setError(null)
 
     const newExpense = {
