@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { useState } from 'react'
 
 import { useNavigation } from '@react-navigation/native'
@@ -44,14 +44,16 @@ const Profile = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <ProfileForm
-        initialValues={form}
-        onChange={onChange}
-        onSubmit={onSubmit}
-      />
-      {error && <Text style={styles.error}>{error}</Text>}
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <ProfileForm
+          initialValues={form}
+          onChange={onChange}
+          onSubmit={onSubmit}
+        />
+        {error && <Text style={styles.error}>{error}</Text>}
+      </View>
+    </ScrollView>
   )
 }
 
