@@ -1,8 +1,8 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native"
 
-import CustomInput from "../Fields/CustomInput";
-import CustomImageUpload from "../Fields/CustomImageUpload";
-import CustomButton from "../Fields/CustomButton";
+import CustomInput from "../Fields/CustomInput"
+import CustomImageUpload from "../Fields/CustomImageUpload"
+import CustomButton from "../Fields/CustomButton"
 
 const ProfileForm = ({ onSubmit, initialValues, onChange }) => {
   return (
@@ -19,7 +19,7 @@ const ProfileForm = ({ onSubmit, initialValues, onChange }) => {
         onChangeText={(text) => onChange(text, "email")}
       />
 
-       <CustomInput
+      <CustomInput
         placeholder="Saldo da conta (R$)"
         value={initialValues.accountBalance}
         onChangeText={(text) => onChange(text, "accountBalance")}
@@ -27,12 +27,12 @@ const ProfileForm = ({ onSubmit, initialValues, onChange }) => {
       />
 
 
-      <CustomImageUpload 
-        image={initialValues.image} 
+      <CustomImageUpload
+        image={initialValues.image}
         onPress={(image) => onChange(image, "image")}
-    />
+      />
 
-     <CustomButton title='Salvar alterações' onPress={onSubmit} style={styles.button} />
+      <CustomButton title='Salvar alterações' onPress={onSubmit} style={styles.button} />
     </View>
   );
 };
@@ -40,8 +40,8 @@ const ProfileForm = ({ onSubmit, initialValues, onChange }) => {
 export default ProfileForm;
 
 const styles = StyleSheet.create({
-    button: {
-        marginTop: 10,
-        backgroundColor: '#96CCA8',
-    }
+  button: {
+    marginTop: 10,
+    backgroundColor: '#96CCA8',
+  }
 })

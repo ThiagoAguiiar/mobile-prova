@@ -6,20 +6,20 @@ const ProfileContext = React.createContext({
 })
 
 export const ProfileProvider = ({ children }) => {
-    const [profile, setProfile] = React.useState({});
+    const [profile, setProfile] = React.useState({})
 
     return (
         <ProfileContext.Provider value={{ profile, setProfile }}>
             {children}
         </ProfileContext.Provider>
-    );
+    )
 }
 
 const useProfile = () => {
     const context = React.useContext(ProfileContext);
-    if (!context) throw new Error('Erro ao usar contexto de perfil');
+    if (!context) throw new Error('Erro ao usar contexto de perfil')
 
-    return context;
+    return context
 }
 
 export default useProfile

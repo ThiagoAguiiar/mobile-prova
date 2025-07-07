@@ -1,11 +1,11 @@
-import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, View, Text, StyleSheet } from 'react-native'
 
 const CustomRadioButton = ({ label, selected, onPress }) => (
     <TouchableOpacity style={styles.container} onPress={onPress}>
         <View style={[styles.radio, selected && styles.radioSelected]}>
             {selected && <View style={styles.radioDot} />}
         </View>
-        
+
         <Text style={styles.label}>{label}</Text>
     </TouchableOpacity>
 );
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginVertical: 8,
     },
-    
+
     radio: {
         height: 24,
         width: 24,
@@ -43,6 +43,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#333',
     },
-});
+})
 
-export default CustomRadioButton;
+export default CustomRadioButton
