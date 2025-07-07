@@ -6,7 +6,9 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@expo-google-fonts/roboto": "^0.4.0",
@@ -19,10 +21,15 @@
     "expo-image-picker": "^16.1.4",
     "expo-status-bar": "~2.2.3",
     "react": "19.0.0",
-    "react-native": "0.79.4"
+    "react-native": "0.79.4",
+    "react-native-chart-kit": "^6.12.0",
+    "react-native-safe-area-context": "^5.5.1",
+    "react-native-svg": "^15.12.0",
+    "react-native-vector-icons": "^10.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "prettier": "^3.6.2"
   },
   "private": true
 }

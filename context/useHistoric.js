@@ -2,26 +2,26 @@ import React from 'react'
 
 const HistoricContext = React.createContext({
   historic: [],
-  setHistoric: () => { },
-  clearHistoric: () => { },
-  removeHistoricItem: () => { },
-  addHistoricItem: () => { },
+  setHistoric: () => {},
+  clearHistoric: () => {},
+  removeHistoricItem: () => {},
+  addHistoricItem: () => {},
 })
 
 export const HistoricProvider = ({ children }) => {
-  const [historic, setHistoric] = React.useState([]);
+  const [historic, setHistoric] = React.useState([])
 
   const clearHistoric = () => {
-    setHistoric([]);
-  };
+    setHistoric([])
+  }
 
-  const removeHistoricItem = (id) => {
-    setHistoric((prev) => prev.filter((item) => item.id !== id));
-  };
+  const removeHistoricItem = id => {
+    setHistoric(prev => prev.filter(item => item.id !== id))
+  }
 
-  const addHistoricItem = (item) => {
-    setHistoric((prev) => [...prev, item]);
-  };
+  const addHistoricItem = item => {
+    setHistoric(prev => [...prev, item])
+  }
 
   return (
     <HistoricContext.Provider
@@ -35,7 +35,7 @@ export const HistoricProvider = ({ children }) => {
     >
       {children}
     </HistoricContext.Provider>
-  );
+  )
 }
 
 const useHistoric = () => {

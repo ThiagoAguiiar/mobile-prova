@@ -1,12 +1,14 @@
-import { StyleSheet, Text, View } from "react-native"
-import { useNavigation } from "@react-navigation/native"
-import { formatToMoney } from "../helpers"
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { formatToMoney } from '../helpers'
 
 import useProfile from '../context/useProfile'
 import useHistoric from '../context/useHistoric'
-import CustomButton from "../components/Fields/CustomButton"
-import ResumeItem from "../components/ResumeItem"
-import Title from "../components/Title"
+import CustomButton from '../components/Fields/CustomButton'
+import ResumeItem from '../components/ResumeItem'
+import Title from '../components/Title'
+import CustomPieBar from '../components/Charts/CustomPieBar'
+import EmptyState from '../components/EmptyState'
 
 const Resume = () => {
   const { profile } = useProfile()
@@ -14,8 +16,8 @@ const Resume = () => {
 
   const navigation = useNavigation()
 
-  const handlePress = () => {
-    navigation.navigate('Perfil')
+  const handlePress = path => {
+    navigation.navigate(path)
   }
 
   const calculateExpenses = () => {
@@ -42,54 +44,80 @@ const Resume = () => {
     }, 0)
   }
 
+  const chartData = {
+    labels: ['Despesas', 'Receitas'],
+    datasets: [
+      {
+        data: [calculateExpenses(), calculateReceipt()],
+      },
+    ],
+  }
+
   if (!profile.accountBalance)
-    return <View style={styles.empty}>
-      <Text style={styles.text}>
-        Cadastre seu saldo na conta primeiro
-      </Text>
+    return (
+      <EmptyState title='Cadastre seu saldo na conta primeiro'>
+        <CustomButton
+          title='Adicionar Saldo'
+          onPress={() => handlePress('Perfil')}
+        />
+      </EmptyState>
+    )
 
-      <CustomButton
-        title='Adicionar Saldo'
-        onPress={handlePress}
-        style={styles.button}
-      />
-    </View>
+  return (
+    <ScrollView style={styles.content}>
+      <Title title='Resumo Financeiro' />
 
-  return <View style={styles.content}>
-    <Title title="Resumo Financeiro" />
+      <View style={styles.data}>
+        <ResumeItem
+          label='Saldo em conta'
+          value={formatToMoney(profile.accountBalance)}
+          style={{ color: '#007AFF' }}
+        />
 
-    <View style={styles.data}>
-      <ResumeItem
-        label="Saldo em conta"
-        value={formatToMoney(profile.accountBalance)}
-      />
+        <ResumeItem
+          label='Total de transações'
+          value={historic.length}
+          style={{ color: 'black' }}
+        />
 
-      <ResumeItem
-        label="Total de transações"
-        value={historic.length}
-      />
+        <ResumeItem
+          label='Total de despesas'
+          value={formatToMoney(calculateExpenses())}
+        />
 
-      <ResumeItem
-        label="Total de despesas"
-        value={formatToMoney(calculateExpenses())}
-      />
+        <ResumeItem
+          label='Total de ganhos'
+          value={formatToMoney(calculateReceipt())}
+          style={{ color: 'green' }}
+        />
 
-      <ResumeItem
-        label="Total de ganhos"
-        value={formatToMoney(calculateReceipt())}
-      />
+        <ResumeItem
+          label='Receita'
+          value={formatToMoney(
+            profile.accountBalance - calculateExpenses() + calculateReceipt()
+          )}
+          style={{ color: '#007AFF' }}
+        />
+      </View>
 
-      <ResumeItem
-        label="Receita"
-        value={formatToMoney(profile.accountBalance - calculateExpenses() + calculateReceipt())}
-      />
-    </View>
+      {historic.length > 0 ? (
+        <View style={styles.charts}>
+          <Title title='Gráfico' />
 
-    <View style={styles.charts}>
-      <Title title="Gráficos" />
-
-    </View>
-  </View>
+          <View style={styles.item}>
+            <CustomPieBar height={250} data={chartData} />
+          </View>
+        </View>
+      ) : (
+        <EmptyState title='Adicione suas despesas ou ganhos para visualizar o gráfico'>
+          <CustomButton
+            title='Adicionar gasto/ganho'
+            onPress={() => handlePress('Despesas')}
+          />
+        </EmptyState>
+      )}
+    </ScrollView>
+  )
 }
 
 export default Resume
@@ -125,10 +153,10 @@ const styles = StyleSheet.create({
   data: {
     backgroundColor: '#fff',
     padding: 20,
-    borderRadius: 10
+    borderRadius: 10,
   },
 
   charts: {
     marginTop: 20,
-  }
+  },
 })

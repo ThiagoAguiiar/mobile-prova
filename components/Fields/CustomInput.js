@@ -1,13 +1,21 @@
-import { StyleSheet, TextInput } from "react-native"
+import { StyleSheet, TextInput } from 'react-native'
 
-const CustomInput = ({ value, onChangeText, placeholder, keyboardType, style }) => {
-  return <TextInput
-    value={value}
-    onChangeText={onChangeText}
-    placeholder={placeholder}
-    keyboardType={keyboardType}
-    style={[styles.input, style]}
-  />
+const CustomInput = ({
+  value,
+  onChangeText,
+  placeholder,
+  keyboardType,
+  style,
+}) => {
+  return (
+    <TextInput
+      value={value}
+      onChangeText={onChangeText}
+      placeholder={placeholder}
+      keyboardType={keyboardType}
+      style={[styles.input, style]}
+    />
+  )
 }
 
 const styles = StyleSheet.create({
@@ -19,8 +27,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 18,
     borderRadius: 8,
-    backgroundColor: '#fff'
-  }
+    backgroundColor: '#fff',
+  },
 })
 
 export default CustomInput

@@ -1,13 +1,13 @@
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, Text, View } from 'react-native'
 
 const EmptyState = ({ title, children }) => {
-  return <View style={styles.container}>
-    <Text style={styles.title}>{title}</Text>
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>{title}</Text>
 
-    <View style={styles.children}>
-       {children}
+      <View style={styles.children}>{children}</View>
     </View>
-  </View>
+  )
 }
 
 export default EmptyState
@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: 'Ubuntu_400Regular'
+    fontFamily: 'Ubuntu_400Regular',
   },
 
   children: {
-    marginTop: 20
-  }
+    marginTop: 20,
+  },
 })

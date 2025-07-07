@@ -1,24 +1,23 @@
-import { StyleSheet, Text, View } from "react-native"
-import { formatToMoney } from "../helpers"
+import { StyleSheet, Text, View } from 'react-native'
+import { formatToMoney } from '../helpers'
 
 const HistoricCard = ({ item }) => {
-  return <View style={[styles.card, item.isExpense ? styles.cardExpense : styles.cardIncome]}>
-    <Text style={styles.title}>
-      {item.info}
-    </Text>
+  return (
+    <View
+      style={[
+        styles.card,
+        item.isExpense ? styles.cardExpense : styles.cardIncome,
+      ]}
+    >
+      <Text style={styles.title}>{item.info}</Text>
 
-    <Text style={styles.itemList}>
-      Categoria: {item.category}
-    </Text>
+      <Text style={styles.itemList}>Categoria: {item.category}</Text>
 
-    <Text style={styles.itemList}>
-      Valor: {formatToMoney(item.value)}
-    </Text>
+      <Text style={styles.itemList}>Valor: {formatToMoney(item.value)}</Text>
 
-    <Text style={styles.itemList}>
-      Data: {item.date}
-    </Text>
-  </View>
+      <Text style={styles.itemList}>Data: {item.date}</Text>
+    </View>
+  )
 }
 
 export default HistoricCard
@@ -34,12 +33,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 8
+    marginBottom: 8,
   },
 
   itemList: {
     fontSize: 14,
-    marginBottom: 1
+    marginBottom: 1,
   },
 
   cardIncome: {
@@ -52,5 +51,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffbfb0',
     borderColor: '#ff6961',
     borderWidth: 2,
-  }
+  },
 })

@@ -10,11 +10,13 @@ const App = () => {
 
   if (!fontsLoaded) return <Text>Carregando...</Text>
 
-  return <ProfileProvider>
-    <HistoricProvider>
-    <Router />
-  </HistoricProvider>
-  </ProfileProvider>
+  return (
+    <ProfileProvider>
+      <HistoricProvider>
+        <Router />
+      </HistoricProvider>
+    </ProfileProvider>
+  )
 }
 
 export default App

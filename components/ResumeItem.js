@@ -1,13 +1,11 @@
-import { StyleSheet, Text } from "react-native"
+import { StyleSheet, Text } from 'react-native'
 
-
-const ResumeItem = ({ value, label }) => {
-  return <Text style={styles.item}>
-    {label}: {" "}
-    <Text style={styles.account}>
-      {value}
+const ResumeItem = ({ value, label, style }) => {
+  return (
+    <Text style={styles.item}>
+      {label}: <Text style={[styles.account, style]}>{value}</Text>
     </Text>
-  </Text>
+  )
 }
 
 export default ResumeItem
@@ -16,11 +14,11 @@ const styles = StyleSheet.create({
   item: {
     fontSize: 16,
     fontFamily: 'Ubuntu_400Regular',
-    marginVertical: 5
+    marginVertical: 5,
   },
 
   account: {
     fontWeight: 'bold',
     color: '#cb3f51',
-  }
+  },
 })

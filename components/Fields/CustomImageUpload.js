@@ -1,11 +1,13 @@
-import { Image, StyleSheet, View } from "react-native"
-import { useState } from "react"
+import { Image, StyleSheet, View } from 'react-native'
+import { useState } from 'react'
 
-import CustomButton from "./CustomButton"
-import * as ImagePicker from "expo-image-picker"
+import CustomButton from './CustomButton'
+import * as ImagePicker from 'expo-image-picker'
 
 const CustomImageUpload = ({ onPress }) => {
-  const [image, setImage] = useState('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png')
+  const [image, setImage] = useState(
+    'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+  )
 
   const handlePress = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -16,8 +18,8 @@ const CustomImageUpload = ({ onPress }) => {
     })
 
     if (!result.canceled) {
-        setImage(result.assets[0].uri)
-        onPress(result.assets[0].uri)
+      setImage(result.assets[0].uri)
+      onPress(result.assets[0].uri)
     }
   }
 
@@ -27,12 +29,12 @@ const CustomImageUpload = ({ onPress }) => {
         <Image source={{ uri: image }} style={styles.image} />
       </View>
 
-      <CustomButton title="Selecionar Imagem" onPress={handlePress} />
+      <CustomButton title='Selecionar Imagem' onPress={handlePress} />
     </View>
-  );
-};
+  )
+}
 
-export default CustomImageUpload;
+export default CustomImageUpload
 
 const styles = StyleSheet.create({
   image: {
@@ -43,6 +45,6 @@ const styles = StyleSheet.create({
 
   imageContainer: {
     marginHorizontal: 'auto',
-    marginVertical: 20
-  }
-});
+    marginVertical: 20,
+  },
+})
