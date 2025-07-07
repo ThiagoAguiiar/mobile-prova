@@ -1,6 +1,7 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { formatToMoney } from '../helpers'
+import { useState } from 'react'
 
 import useProfile from '../context/useProfile'
 import useHistoric from '../context/useHistoric'
@@ -63,6 +64,9 @@ const Resume = () => {
       </EmptyState>
     )
 
+  const isNegativeReceipt =
+    profile.accountBalance - calculateExpenses() + calculateReceipt() < 0
+
   return (
     <ScrollView style={styles.content}>
       <Title title='Resumo Financeiro' />
@@ -96,7 +100,7 @@ const Resume = () => {
           value={formatToMoney(
             profile.accountBalance - calculateExpenses() + calculateReceipt()
           )}
-          style={{ color: '#007AFF' }}
+          style={{ color: isNegativeReceipt ? 'red' : 'green' }}
         />
       </View>
 
